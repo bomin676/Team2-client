@@ -1,68 +1,77 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root{
+  --bg: #ffffff;
+  --fg: #111827;        /* 거의 검정에 가까운 텍스트 */
+  --accent: #3b82f6;    /* 파란 밑줄 */
+  --button-bg: #e5e7eb; /* 연한 회색 버튼 */
+  --button-fg: #111827;
+  --button-bg-hover: #d1d5db;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif; }
+
+/* 부모 레이아웃이 크기를 정할 수 있도록 width/height 고정 없음 */
+.start-screen {
+  display: grid;
+  place-items: end center; /* 아래쪽 정렬(스크린샷 느낌) */
+  padding: 5vh 8vw;        /* 반응형 여백 */
+  height: 100%;            /* 화면 가득 사용 (상위에서 조정 가능) */
 }
 
-body {
-  margin: 0;
+/* 내부 컨텐츠 래퍼: 넓이/높이 고정 없음 */
+.start-content {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* 제목: 줄바꿈을 직접 컨트롤하기 위해 라인을 span으로 분리 */
+.title {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: center;
+  line-height: 1.15;
 }
 
-button {
+/* 뷰포트에 따라 자동으로 크기 반응. 레이아웃에서 다른 규칙을 줄 수도 있음 */
+.title .line {
+  display: block;
+  font-size: clamp(28px, 6vw, 48px);
+}
+
+/* 밑줄: 텍스트 폭만큼 파란 라인(2px) */
+.underline-accent {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 2px;
+  padding-bottom: 4px; /* 밑줄과 글자 간격 */
+}
+
+/* inline 사용 시(‘함께’) */
+.inline { display: inline-block; }
+
+/* 시작 버튼: 사이즈 고정하지 않음(텍스트 크기에 비례) */
+.start-button {
+  appearance: none;
+  border: none;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  background: var(--button-bg);
+  color: var(--button-fg);
+  font-weight: 600;
+  font-size: clamp(16px, 3.8vw, 22px);
+  padding: 14px 28px;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+.start-button:hover { background: var(--button-bg-hover); }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* 예시용: 시작 이후 화면 */
+.app-body {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  text-align: center;
 }
