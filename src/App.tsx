@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import HomeHero from "./pages/HomeHero";
-import WelcomeForm from "./pages/WelcomeForm";
-import LearnMore from "./pages/LearnMore";
+import HomeHero from "./pages/onboarding/components/HomeHero";
+import WelcomeForm from "./pages/onboarding/components/WelcomeForm";
+import LearnMore from "./pages/onboarding/components/LearnMore";
 
 export default function App() {
   // 1: 홈, 2: 이름입력, 3: 더 알아보기
